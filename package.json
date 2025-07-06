@@ -2,7 +2,7 @@
   "name": "urdu-tts-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cognizanttechno1.github.io/urdu-tts-app7jul2240",
+  "homepage": "https://cognizanttecho1.github.io/urdu-tts-app",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -16,10 +16,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
