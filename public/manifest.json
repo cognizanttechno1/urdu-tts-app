@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Urdu TTS",
+  "name": "Urdu Text-to-Speech App",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +18,13 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "./index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "background_color": "#f9f9f9",
+  "orientation": "portrait-primary",
+  "lang": "ur-PK",
+  "scope": "./",
+  "description": "A responsive offline-capable Urdu Text-to-Speech (TTS) app built in React. Supports auto reading and word-by-word speech.",
+  "prefer_related_applications": false
 }
