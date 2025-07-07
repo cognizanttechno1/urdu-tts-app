@@ -1,0 +1,30 @@
+{
+  "short_name": "Urdu TTS",
+  "name": "Urdu Text-to-Speech App",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#f9f9f9",
+  "orientation": "portrait-primary",
+  "lang": "ur-PK",
+  "scope": "./",
+  "description": "A responsive offline-capable Urdu Text-to-Speech (TTS) app built in React. Supports auto reading and word-by-word speech.",
+  "prefer_related_applications": false
+}
