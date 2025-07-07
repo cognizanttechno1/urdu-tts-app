@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/urdu-tts-app/static/css/main.aba5780d.css",
-    "main.js": "/urdu-tts-app/static/js/main.a8578fd1.js",
+    "main.css": "/urdu-tts-app/static/css/main.6719e489.css",
+    "main.js": "/urdu-tts-app/static/js/main.8e0545de.js",
     "static/js/453.9d6a2e66.chunk.js": "/urdu-tts-app/static/js/453.9d6a2e66.chunk.js",
     "index.html": "/urdu-tts-app/index.html",
-    "main.aba5780d.css.map": "/urdu-tts-app/static/css/main.aba5780d.css.map",
-    "main.a8578fd1.js.map": "/urdu-tts-app/static/js/main.a8578fd1.js.map",
+    "main.6719e489.css.map": "/urdu-tts-app/static/css/main.6719e489.css.map",
+    "main.8e0545de.js.map": "/urdu-tts-app/static/js/main.8e0545de.js.map",
     "453.9d6a2e66.chunk.js.map": "/urdu-tts-app/static/js/453.9d6a2e66.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.aba5780d.css",
-    "static/js/main.a8578fd1.js"
+    "static/css/main.6719e489.css",
+    "static/js/main.8e0545de.js"
   ]
 }
