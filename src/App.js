@@ -8,15 +8,36 @@ const UrduTTSApp = () => {
     text3: localStorage.getItem("text3") || "",
   });
 
-  const [fontSize, setFontSize] = useState(24);
+  const [fontSize, setFontSize] = useState(24); // Only for word display now
   const [rate, setRate] = useState(1);
   const [highlightedWord, setHighlightedWord] = useState(null);
   const [isReading, setIsReading] = useState(false);
-  const [currentField, setCurrentField] = useState(null);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [activeField, setActiveField] = useState(null);
 
   const synthRef = useRef(window.speechSynthesis);
   const wordListRef = useRef([]);
+  const voiceRef = useRef(null);
+
+  // ✅ Voice selection logic
+  const bindVoice = () => {
+    const voices = synthRef.current.getVoices();
+    const preferredVoices = ["ur-PK", "ur", "hi-IN"];
+
+    const matched = preferredVoices
+      .map((lang) => voices.find((v) => v.lang === lang))
+      .find(Boolean);
+
+    voiceRef.current = matched || voices.find((v) => v.lang.startsWith("ur")) || voices[0];
+    console.log("✅ Selected voice:", voiceRef.current?.name, voiceRef.current?.lang);
+  };
+
+  useEffect(() => {
+    if (synthRef.current.onvoiceschanged !== undefined) {
+      synthRef.current.onvoiceschanged = bindVoice;
+    }
+    bindVoice(); // Call on mount
+  }, []);
 
   useEffect(() => {
     Object.entries(textInputs).forEach(([key, value]) => {
@@ -34,7 +55,8 @@ const UrduTTSApp = () => {
     const word = wordListRef.current[index];
     setHighlightedWord(word);
     const utterance = new SpeechSynthesisUtterance(word);
-    utterance.lang = "ur-PK";
+    utterance.lang = voiceRef.current?.lang || "ur-PK";
+    utterance.voice = voiceRef.current;
     utterance.rate = rate;
 
     utterance.onend = () => {
@@ -44,7 +66,6 @@ const UrduTTSApp = () => {
     synthRef.current.speak(utterance);
   };
 
-  // When currentWordIndex changes, speak the next word
   useEffect(() => {
     if (isReading) {
       speakWordByIndex(currentWordIndex);
@@ -56,7 +77,6 @@ const UrduTTSApp = () => {
     const text = textInputs[field];
     if (!text.trim()) return;
 
-    setCurrentField(field);
     wordListRef.current = text.trim().split(" ");
     setCurrentWordIndex(0);
     setIsReading(true);
@@ -78,7 +98,8 @@ const UrduTTSApp = () => {
     stopSpeech();
     setHighlightedWord(word);
     const utterance = new SpeechSynthesisUtterance(word);
-    utterance.lang = "ur-PK";
+    utterance.lang = voiceRef.current?.lang || "ur-PK";
+    utterance.voice = voiceRef.current;
     utterance.rate = rate;
 
     utterance.onend = () => {
@@ -128,22 +149,33 @@ const UrduTTSApp = () => {
       <h1>🗣️ Urdu TTS App</h1>
 
       {["text1", "text2", "text3"].map((field, idx) => (
-        <div key={field} className="text-block">
+        <div
+          key={field}
+          className={`text-block ${activeField === field ? "active-block" : ""}`}
+        >
           <textarea
             name={field}
             value={textInputs[field]}
             onChange={handleChange}
             placeholder={`Enter Urdu Paragraph ${idx + 1}`}
-            style={{ fontSize, fontFamily: "Jameel Noori Nastaleeq" }}
+            style={{ fontSize: 24, fontFamily: "Jameel Noori Nastaleeq" }}
+            onFocus={() => setActiveField(field)}
           />
+
           <div className="button-group">
             <button onClick={() => startAutoReading(field)}>🔊 Auto Read</button>
-            <button onClick={() => resumeAutoReading()}>▶️ Resume</button>
+            <button onClick={resumeAutoReading}>▶️ Resume</button>
             <button onClick={stopSpeech}>⏹️ Stop</button>
             <button onClick={() => handleClear(field)}>🧹 Clear</button>
             <button onClick={() => handleManualSave(field)}>💾 Save</button>
           </div>
-          <div className="word-by-word">{renderWordByWord(textInputs[field])}</div>
+
+          <div
+            className="word-by-word"
+            style={{ fontSize: fontSize }}
+          >
+            {renderWordByWord(textInputs[field])}
+          </div>
         </div>
       ))}
 

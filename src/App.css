@@ -3,7 +3,7 @@
 body {
   margin: 0;
   background-color: #f9f9f9;
-  font-family: 'Jameel Noori Nastaleeq', serif;
+  font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Segoe UI', serif;
   direction: rtl;
   text-align: right;
 }
@@ -24,16 +24,18 @@ h1 {
   text-align: center;
 }
 
+/* Each Text Area Block */
 .text-block {
   margin-bottom: 30px;
 }
 
+/* Text Input Style */
 textarea {
   width: 100%;
   height: 100px;
   padding: 12px;
   margin-bottom: 10px;
-  font-family: 'Jameel Noori Nastaleeq', serif;
+  font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Segoe UI', serif;
   font-size: 24px;
   border-radius: 8px;
   border: 1px solid #ccc;
@@ -42,13 +44,21 @@ textarea {
   line-height: 1.6;
 }
 
+/* Button Group — Shown Only if Active */
 .button-group {
   margin-bottom: 12px;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
 }
 
+/* ❌ Hide button-group if not active */
+.text-block:not(.active-block) .button-group {
+  display: none;
+}
+
+/* Buttons */
 .button-group button {
   background-color: #007bff;
   color: white;
@@ -68,8 +78,9 @@ textarea {
   outline: 2px solid #aad4ff;
 }
 
+/* Word-by-word clickable words */
 .word-by-word {
-  font-family: 'Jameel Noori Nastaleeq', serif;
+  font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Segoe UI', serif;
   font-size: 24px;
   line-height: 2;
   margin-top: 10px;
@@ -85,12 +96,11 @@ textarea {
   transition: background-color 0.3s;
 }
 
-/* Hover effect */
 .word-by-word span:hover {
   background-color: #e7f3ff;
 }
 
-/* 🔶 Highlighted word style */
+/* Highlighted Word */
 .highlight {
   background-color: yellow;
   color: black;
@@ -98,6 +108,7 @@ textarea {
   border-radius: 4px;
 }
 
+/* Controls for font size and speed */
 .controls {
   margin-top: 20px;
   display: flex;
@@ -105,16 +116,17 @@ textarea {
   gap: 20px;
   align-items: center;
   font-size: 18px;
+  justify-content: center;
 }
 
 .controls label {
   font-weight: bold;
 }
 
+/* Responsive adjustments */
 @media (max-width: 600px) {
-  .controls {
-    flex-direction: column;
-    align-items: flex-start;
+  .app-container {
+    padding: 20px 15px;
   }
 
   textarea {

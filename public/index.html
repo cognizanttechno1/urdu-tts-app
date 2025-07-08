@@ -3,33 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>اردو TTS App | React</title>
 
     <meta name="theme-color" content="#ffffff" />
-    <meta name="description" content="React Urdu Text-to-Speech (TTS) App" />
+    <meta name="description" content="اردو ٹیکسٹ ٹو اسپیچ ایپ React میں بنائی گئی" />
+    <meta name="keywords" content="اردو, TTS, Urdu Text to Speech, React Urdu App" />
+    <meta name="author" content="Cognizant Techno" />
 
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- ✅ Urdu Font Load (from public/fonts/) -->
+    <!-- ✅ Google Urdu Font CDN Fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+
+    <!-- ✅ Jameel Noori Nastaleeq Local Font (in public/fonts) -->
     <style>
       @font-face {
         font-family: 'Jameel Noori Nastaleeq';
-        src: url('fonts/JameelNooriNastaleeq.ttf') format('truetype');
+        src: url('%PUBLIC_URL%/fonts/JameelNooriNastaleeq.ttf') format('truetype');
         font-weight: normal;
         font-style: normal;
       }
-    </style>
 
-    <style>
       body {
         margin: 0;
-        font-family: 'Jameel Noori Nastaleeq', serif;
+        font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Segoe UI', serif;
         background-color: #f9f9f9;
         direction: rtl;
         text-align: right;
+        -webkit-font-smoothing: antialiased;
       }
     </style>
   </head>
@@ -37,19 +40,21 @@
   <body>
     <noscript>براہ کرم اس ایپ کو چلانے کے لیے جاوا اسکرپٹ آن کریں۔</noscript>
     <div id="root"></div>
+
+    <!-- ✅ PWA Service Worker Registration -->
     <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function () {
-      navigator.serviceWorker.register("/service-worker.js").then(
-        function (registration) {
-          console.log("✅ ServiceWorker registered:", registration.scope);
-        },
-        function (err) {
-          console.log("❌ ServiceWorker registration failed:", err);
-        }
-      );
-    });
-  }
-</script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("%PUBLIC_URL%/service-worker.js").then(
+            function (registration) {
+              console.log("✅ ServiceWorker registered:", registration.scope);
+            },
+            function (err) {
+              console.log("❌ ServiceWorker registration failed:", err);
+            }
+          );
+        });
+      }
+    </script>
   </body>
 </html>
